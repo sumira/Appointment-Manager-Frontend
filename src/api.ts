@@ -64,7 +64,7 @@ export const createAppointment = async (slot: string): Promise<Appointment> => {
 };
 
 export const deleteAppointment = async (id: number): Promise<void> => {
-    await api.delete(`/delete-appointment/${id}`);
+    await api.delete(`/api/appointments/delete-appointment/${id}`);
 };
 
 export const getBookedSlots = async (): Promise<string[]> => {
