@@ -36,7 +36,7 @@ interface SignupResponse {
     email: string;
 }
 
-interface Appointment {
+export interface Appointment {
     id: number;
     slot: string;
     userId: number;
@@ -54,12 +54,12 @@ export const signup = async (name: string, email: string, password: string): Pro
 };
 
 export const getAppointments = async (): Promise<Appointment[]> => {
-    const response = await api.get<Appointment[]>('/user-appointments');
+    const response = await api.get<Appointment[]>('/api/appointments/user-appointments');
     return response.data;
 };
 
 export const createAppointment = async (slot: string): Promise<Appointment> => {
-    const response = await api.post<Appointment>('/create-appointment', { slot });
+    const response = await api.post<Appointment>('/api/appointments/create-appointment', { slot });
     return response.data;
 };
 

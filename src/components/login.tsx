@@ -13,7 +13,7 @@ const Login = () => {
       const data = await login(email, password);
       localStorage.setItem("token", data.token);
       setAuthToken(data.token); // Set token in axios headers
-      navigate("/appointments");
+      navigate("/getAppointments");
     } catch (error) {
       console.error("Login failed", error);
       alert("Invalid credentials");
