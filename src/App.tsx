@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import Login from "./components/login";
 import Signup from "./components/signup";
+import AppointmentList from "./components/appointment-list";
+import PrivateRoute from "./components/private-route";
 import { setAuthToken } from "./api";
 
 function App() {
@@ -23,6 +25,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
         <Route path="/signup" element={<Signup />} />
+        <Route
+          path="/getAppointments"
+          element={<PrivateRoute element={<AppointmentList />} />}
+        />
       </Routes>
     </Router>
   );
