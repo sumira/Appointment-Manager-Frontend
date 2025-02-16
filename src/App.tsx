@@ -6,6 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./components/login";
+import Signup from "./components/signup";
 import { setAuthToken } from "./api";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Navigate replace to="/login" />} />
+        <Route path="/signup" element={<Signup />} />
       </Routes>
     </Router>
   );

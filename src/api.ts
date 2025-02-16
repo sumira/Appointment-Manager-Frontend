@@ -30,6 +30,7 @@ interface LoginResponse {
 }
 
 interface SignupResponse {
+    token: string;
     id: number;
     name: string;
     email: string;
@@ -48,7 +49,7 @@ export const login = async (email: string, password: string): Promise<LoginRespo
 };
 
 export const signup = async (name: string, email: string, password: string): Promise<SignupResponse> => {
-    const response = await api.post<SignupResponse>('/signup', { name, email, password });
+    const response = await api.post<SignupResponse>('/api/auth/signup', { name, email, password });
     return response.data;
 };
 
