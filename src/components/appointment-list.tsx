@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { getAppointments, deleteAppointment } from "../api";
 import { useNavigate } from "react-router-dom";
-import { FaPlus, FaTrash, FaCalendar, FaClock, FaList } from "react-icons/fa";
+import {
+  FaPlus,
+  FaTrash,
+  FaCalendar,
+  FaClock,
+  FaList,
+  FaSignOutAlt,
+} from "react-icons/fa";
 
 interface Appointment {
   id: number;
@@ -55,6 +62,11 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+
   const generateCalendarData = () => {
     const now = new Date();
     const year = now.getFullYear();
@@ -99,7 +111,7 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
           Create An Appointment
         </button>
 
-        <div className="hidden md:flex space-x-2">
+        <div className="hidden md:flex space-x-2 items-center">
           <button
             className={`p-2 rounded ${
               viewMode === "calendar" ? "bg-blue-100" : "bg-gray-100"
@@ -123,6 +135,13 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
                 viewMode === "list" ? "text-blue-500" : "text-gray-500"
               }
             />
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center"
+            onClick={handleLogout}
+          >
+            <FaSignOutAlt className="mr-2" />
+            Logout
           </button>
         </div>
       </div>
