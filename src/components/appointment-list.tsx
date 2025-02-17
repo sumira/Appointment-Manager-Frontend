@@ -51,7 +51,10 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
               key={appointment.id}
               className="mb-2 p-4 border rounded shadow-md"
             >
-              <span className="mr-4">{appointment.slot}</span>
+              <span className="mr-4">
+                {appointment.date} {appointment.startTime} -{" "}
+                {appointment.endTime}
+              </span>
               <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 onClick={() => handleDelete(appointment.id)}
