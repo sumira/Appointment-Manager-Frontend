@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createAppointment, getBookedSlots } from "../api";
+import { useNavigate } from "react-router-dom";
+import { FaList } from "react-icons/fa"; // Import FaList icon
 
 interface BookedSlot {
   date: string;
@@ -12,6 +14,7 @@ const AppointmentForm = () => {
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const timeSlots = [
     "18:00-18:30",
@@ -85,9 +88,18 @@ const AppointmentForm = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-0 xl:max-w-screen-sm">
         <div className="bg-white shadow-md rounded-lg overflow-hidden">
           <div className="px-4 py-5 sm:p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              Create Appointment
-            </h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-2xl font-bold text-gray-800">
+                Create Appointment
+              </h2>
+              <button
+                className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                onClick={() => navigate("/getAppointments")}
+              >
+                <FaList className="mr-2" />
+                View Appointments
+              </button>
+            </div>
             {error && <div className="text-red-500 mb-4">{error}</div>}
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
