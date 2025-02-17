@@ -31,7 +31,6 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
     };
     fetchAppointments();
 
-    // Set initial view based on screen width
     const handleResize = () => {
       if (window.innerWidth >= 768) {
         setViewMode("calendar");
@@ -40,7 +39,7 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
       }
     };
 
-    handleResize(); // Initial call
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -56,9 +55,7 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
     }
   };
 
-  // Generate calendar grid data
   const generateCalendarData = () => {
-    // Get current month data
     const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth();
@@ -179,8 +176,9 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
                                   className="bg-blue-100 text-blue-800 text-xs p-1 rounded flex justify-between items-center"
                                 >
                                   <span className="truncate">
-                                    {appointment.startTime.substring(0, 5)}-
-                                    {appointment.endTime.substring(0, 5)}
+                                    {appointment.startTime.substring(0, 5)}{" "}
+                                    {"PM"} -
+                                    {appointment.endTime.substring(0, 5)} {"PM"}
                                   </span>
                                   <button
                                     onClick={() => handleDelete(appointment.id)}
@@ -223,8 +221,10 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
                     <FaClock className="mr-2 text-gray-600" />
                     <span className="text-sm">
                       <span className="font-semibold">From:</span>{" "}
-                      {appointment.startTime}{" "}
-                      <span className="font-semibold">To:</span>{" "}
+                      {appointment.startTime} {"PM "}
+                      {"  "}
+                      <span className="font-semibold">To:</span>
+                      {"PM"}
                       {appointment.endTime}
                     </span>
                   </div>
