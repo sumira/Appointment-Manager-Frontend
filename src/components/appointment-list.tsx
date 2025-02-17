@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { getAppointments, deleteAppointment, Appointment } from "../api";
+import { getAppointments, deleteAppointment } from "../api";
 import { useNavigate } from "react-router-dom";
+
+interface Appointment {
+  id: number;
+  date: string;
+  startTime: string;
+  endTime: string;
+  userId: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
 interface AppointmentListProps {}
 
@@ -32,7 +42,7 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto px-4 py-8">
       <h2 className="text-2xl font-bold mb-4">Your Appointments</h2>
 
       <button
@@ -42,29 +52,31 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
         Create An Appointment
       </button>
 
-      {appointments.length === 0 ? (
-        <p>No appointments found.</p>
-      ) : (
-        <ul className="list-none">
-          {appointments.map((appointment) => (
-            <li
-              key={appointment.id}
-              className="mb-2 p-4 border rounded shadow-md"
-            >
-              <span className="mr-4">
-                {appointment.date} {appointment.startTime} -{" "}
-                {appointment.endTime}
-              </span>
-              <button
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                onClick={() => handleDelete(appointment.id)}
+      <div className="">
+        {appointments.length === 0 ? (
+          <p>No appointments found.</p>
+        ) : (
+          <ul className="list-none">
+            {appointments.map((appointment) => (
+              <li
+                key={appointment.id}
+                className="mb-2 p-4 border rounded shadow-md"
               >
-                Delete
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
+                <span className="mr-4">
+                  {appointment.date} {appointment.startTime} -{" "}
+                  {appointment.endTime}
+                </span>
+                <button
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  onClick={() => handleDelete(appointment.id)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };
