@@ -68,7 +68,7 @@ export const deleteAppointment = async (id: number): Promise<void> => {
 };
 
 export const getBookedSlots = async (): Promise<string[]> => {
-    const response = await api.get<string[]>('/booked-slots');
+    const response = await api.get<string[]>('/api/appointments/booked-slots');
     return response.data;
 };
 
