@@ -58,8 +58,8 @@ export const getAppointments = async (): Promise<Appointment[]> => {
     return response.data;
 };
 
-export const createAppointment = async (slot: string): Promise<Appointment> => {
-    const response = await api.post<Appointment>('/api/appointments/create-appointment', { slot });
+export const createAppointment = async (data: { date: string; startTime: string; endTime: string }): Promise<Appointment> => {
+    const response = await api.post('/api/appointments/create-appointment', data);
     return response.data;
 };
 
