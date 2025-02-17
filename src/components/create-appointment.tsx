@@ -81,12 +81,14 @@ const AppointmentForm = () => {
   const today = new Date().toISOString().split("T")[0];
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-        <h2 className="text-2xl font-bold mb-4">Create Appointment</h2>
+    <div className="bg-gray-100 min-h-screen py-12 flex items-center justify-center">
+      <div className="bg-white shadow-md rounded lg:rounded-lg p-6 lg:p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          Create Appointment
+        </h2>
         {error && <div className="text-red-500 mb-4">{error}</div>}
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="date"
@@ -103,7 +105,7 @@ const AppointmentForm = () => {
               min={today}
             />
           </div>
-          <div className="mb-4">
+          <div>
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="timeSlot"
@@ -111,7 +113,7 @@ const AppointmentForm = () => {
               Available Time Slots
             </label>
             {loading ? (
-              <p>Loading available slots...</p>
+              <p className="text-gray-600">Loading available slots...</p>
             ) : (
               <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -137,7 +139,7 @@ const AppointmentForm = () => {
             )}
           </div>
           <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
             type="submit"
             disabled={!selectedSlot || loading}
           >
