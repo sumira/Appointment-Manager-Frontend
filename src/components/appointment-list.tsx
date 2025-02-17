@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAppointments, deleteAppointment } from "../api";
 import { useNavigate } from "react-router-dom";
+import { FaPlus, FaTrash, FaCalendar, FaClock } from "react-icons/fa"; // Import icons
 
 interface Appointment {
   id: number;
@@ -46,9 +47,10 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
       <h2 className="text-2xl font-bold mb-4">Your Appointments</h2>
 
       <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mb-4 flex items-center"
         onClick={() => navigate("/createAppointment")}
       >
+        <FaPlus className="mr-2" />
         Create An Appointment
       </button>
 
@@ -60,16 +62,21 @@ const AppointmentList: React.FC<AppointmentListProps> = () => {
             {appointments.map((appointment) => (
               <li
                 key={appointment.id}
-                className="mb-2 p-4 border rounded shadow-md"
+                className="mb-2 p-4 border rounded shadow-md flex items-center justify-between"
               >
-                <span className="mr-4">
-                  {appointment.date} {appointment.startTime} -{" "}
-                  {appointment.endTime}
-                </span>
+                <div className="flex items-center">
+                  <FaCalendar className="mr-1" />
+                  <span className="mr-2">{appointment.date}</span>
+                  <FaClock className="mr-1" />
+                  <span>
+                    {appointment.startTime} - {appointment.endTime}
+                  </span>
+                </div>
                 <button
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center"
                   onClick={() => handleDelete(appointment.id)}
                 >
+                  <FaTrash className="mr-2" />
                   Delete
                 </button>
               </li>
