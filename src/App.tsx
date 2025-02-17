@@ -8,6 +8,7 @@ import {
 import Login from "./components/login";
 import Signup from "./components/signup";
 import AppointmentList from "./components/appointment-list";
+import AppointmentForm from "./components/create-appointment";
 import PrivateRoute from "./components/private-route";
 import { setAuthToken } from "./api";
 
@@ -28,6 +29,10 @@ function App() {
         <Route
           path="/getAppointments"
           element={<PrivateRoute element={<AppointmentList />} />}
+        />
+        <Route
+          path="/createAppointment"
+          element={<PrivateRoute element={<AppointmentForm />} />}
         />
       </Routes>
     </Router>
